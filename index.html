@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>SHOP — L'Expérience Ultime</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
+  
+  <script src="https://www.paypal.com/sdk/js?client-id=METS_TON_CLIENT_ID_ICI&currency=EUR"></script>
+
   <style>
     :root {
       --accent: #ff3e6c;
@@ -25,16 +28,14 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
     h1, h2, h3, h4, .logo { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.5px; }
 
-    /* BARRE DE NAVIGATION PREMIUM (EFFET MACBOOK PRO) */
+    /* BARRE DE NAVIGATION PREMIUM */
     nav { 
       position: fixed; top: 0; left: 0; right: 0; z-index: 100; 
       height: 75px; display: flex; align-items: center; justify-content: space-between; 
       padding: 0 5%; background: var(--bg-nav); border-bottom: 1px solid var(--border); 
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      transition: all 0.3s;
     }
-    .logo { font-size: 1.8rem; font-weight: 700; text-decoration: none; color: var(--text); cursor: pointer; user-select: none; transition: transform 0.2s; }
-    .logo:active { transform: scale(0.95); }
+    .logo { font-size: 1.8rem; font-weight: 700; text-decoration: none; color: var(--text); cursor: pointer; user-select: none; }
     .logo span { color: var(--accent); }
     .nav-actions { display: flex; align-items: center; gap: 15px; }
     
@@ -54,116 +55,91 @@
     .search-input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(255, 62, 108, 0.1); }
     .sort-select { background: var(--bg-card); border: 1px solid var(--border); color: white; padding: 12px 20px; border-radius: 100px; outline: none; font-family: inherit; cursor: pointer; font-size: 0.9rem; }
 
-    /* CHIPS DE CATÉGORIES ANIMÉES */
+    /* CHIPS DE CATÉGORIES */
     .categories-bar { padding: 10px 5% 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; max-width: 1400px; margin: 0 auto; }
     .categories-bar::-webkit-scrollbar { display: none; }
-    .cat-chip { padding: 10px 22px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; color: var(--text-muted); cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
-    .cat-chip:hover { color: white; border-color: var(--border-hover); }
+    .cat-chip { padding: 10px 22px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; color: var(--text-muted); cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: all 0.25s; white-space: nowrap; }
     .cat-chip.active { background: white; color: black; border-color: white; }
 
-    /* GRAND BANNER HERO MINIMALISTE DE LUXE */
+    /* BANNER HERO */
     .hero { padding: 10px 5% 30px; max-width: 1400px; margin: 0 auto; }
     .hero-banner { background: linear-gradient(180deg, #0f0f12 0%, #050507 100%); border: 1px solid var(--border); border-radius: 32px; padding: 70px 50px; position: relative; overflow: hidden; text-align: center; }
     .hero h1 { font-size: clamp(2.2rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 15px; letter-spacing: -2px; background: linear-gradient(180deg, #fff 40%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 0 auto 30px; line-height: 1.6; }
 
     /* BOUTONS GENERIQUES MODERNES */
-    .btn { padding: 14px 28px; border-radius: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 0.95rem; justify-content: center; border: none; }
+    .btn { padding: 14px 28px; border-radius: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 0.95rem; justify-content: center; border: none; }
     .btn-primary { background: var(--accent); color: white; }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 62, 108, 0.2); }
     .btn-secondary { background: var(--bg-card); color: var(--text); border: 1px solid var(--border); }
-    .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
     .btn-danger { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
     .btn-danger:hover { background: #ef4444; color: white; }
 
-    /* GRILLE VITRINE DE LUXE (PC MULTI-COLONNES / TEL 2 COLONNES OU 1) */
+    /* GRILLE VITRINE */
     .shop-container { padding: 20px 5% 80px; max-width: 1400px; margin: 0 auto; }
-    .grid-title { margin-bottom: 30px; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
+    .grid-title { margin-bottom: 30px; font-size: 1.8rem; font-weight: 700; }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
     
-    .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 28px; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; position: relative; }
-    .product-card:hover { transform: translateY(-6px); border-color: var(--border-hover); background: var(--bg-card-hover); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
-    
+    .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 28px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-6px); border-color: var(--border-hover); background: var(--bg-card-hover); }
     .prod-img-wrapper { width: 100%; aspect-ratio: 1.05; background: #0e0e11; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border-bottom: 1px solid var(--border); }
-    .prod-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .product-card:hover .prod-img { transform: scale(1.04); }
-    
+    .prod-img { width: 100%; height: 100%; object-fit: cover; }
     .prod-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
     .prod-cat { font-size: 0.7rem; text-transform: uppercase; color: var(--accent); font-weight: 800; margin-bottom: 8px; letter-spacing: 1px; }
-    .prod-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: #fff; line-height: 1.2; }
+    .prod-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
     .prod-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; }
-    .prod-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.02); }
+    .prod-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 15px; }
     .prod-price { font-size: 1.4rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
 
     /* PANIER ERGONOMIQUE COULISSANT */
     .sidebar { position: fixed; top: 0; right: -100%; width: 100%; max-width: 480px; height: 100vh; background: #070709; border-left: 1px solid var(--border); z-index: 200; box-shadow: -20px 0 50px rgba(0,0,0,0.8); transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; padding: 30px; }
     .sidebar.open { right: 0; }
     .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
-    .sidebar-close { background: none; border: none; color: var(--text-muted); font-size: 1.8rem; cursor: pointer; padding: 5px; transition: color 0.2s; }
-    .sidebar-close:hover { color: white; }
-    .cart-items { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-right: 5px; }
+    .sidebar-close { background: none; border: none; color: var(--text-muted); font-size: 1.8rem; cursor: pointer; padding: 5px; }
+    .cart-items { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
     .cart-item { display: flex; gap: 15px; align-items: center; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px solid var(--border); }
     .cart-item-info { flex-grow: 1; }
-    .cart-item-del { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem; font-weight: 600; padding: 5px; }
+    .cart-item-del { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
     .cart-footer { padding-top: 25px; border-top: 1px solid var(--border); }
 
-    /* SUPER MODALS ET STRUCTURE ADMIN AVANCÉE */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
-    .admin-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 32px; width: 100%; max-width: 850px; max-height: 90vh; overflow-y: auto; padding: 40px; }
+    /* FENÊTRES MODALES ET FORMULAIRES */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+    .admin-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 32px; width: 100%; max-width: 550px; max-height: 90vh; overflow-y: auto; padding: 40px; position: relative; }
     .form-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px; }
-    .form-group label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .form-group input, .form-group select, .form-group textarea { background: var(--bg); border: 1px solid var(--border); color: white; padding: 14px 20px; border-radius: 16px; font-family: inherit; font-size: 0.95rem; outline: none; width: 100%; transition: border-color 0.2s; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
-    .form-group textarea { border-radius: 18px; min-height: 100px; resize: none; }
+    .form-group label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .form-group input, .form-group select, .form-group textarea { background: var(--bg); border: 1px solid var(--border); color: white; padding: 14px 20px; border-radius: 16px; font-family: inherit; font-size: 0.95rem; outline: none; width: 100%; }
+    .form-group textarea { min-height: 80px; resize: none; }
+    
+    .price-summary-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 15px; margin: 20px 0; font-size: 0.95rem; }
+    .price-summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; }
     
     .admin-nav-tabs { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    .tab-btn { background: none; border: none; color: var(--text-muted); font-size: 1rem; cursor: pointer; padding: 8px 16px; font-weight: 700; position: relative; transition: color 0.2s; }
+    .tab-btn { background: none; border: none; color: var(--text-muted); font-size: 1rem; cursor: pointer; padding: 8px 16px; font-weight: 700; position: relative; }
     .tab-btn.active { color: var(--accent); }
     .tab-btn.active::after { content: ''; position: absolute; bottom: -12px; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 10px; }
     
-    /* GESTION ET COMPOSANTS DES STOCKS ET DES COMMANDES */
-    .admin-list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--bg); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 12px; gap: 15px; }
+    .admin-list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--bg); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 12px; }
     .order-row { background: var(--bg); padding: 20px; border-radius: 20px; margin-bottom: 15px; border: 1px solid var(--border); }
-    .order-header { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 12px; font-size: 1.05rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    .order-details { font-size: 0.9rem; color: #a1a1aa; line-height: 1.6; display: grid; grid-template-columns: 1fr; gap: 4px; }
-    
+    .order-header { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
     /* SKELETON LOADING BRILLANT */
     .skeleton-card { background: var(--bg-card); border-radius: 28px; border: 1px solid var(--border); height: 420px; position: relative; overflow: hidden; }
-    .skeleton-card::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); animation: loading-shimmer 1.5s infinite; }
+    
+    /* MODAL DE SUCCÈS SUBLIME */
+    .success-card { text-align: center; padding: 20px; }
+    .success-icon { width: 80px; height: 80px; background: rgba(16, 185, 129, 0.1); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px; }
 
-    @keyframes loading-shimmer { 100% { transform: translateX(100%); } }
-
-    /* ════════════════════════════════════════════════ */
-    /* DESIGN MOBILE AVANCÉ RESPONSIVE */
-    /* ════════════════════════════════════════════════ */
     @media (max-width: 768px) {
-      nav { height: 70px; padding: 0 5%; }
-      .controls-row { padding: 95px 5% 5px; gap: 10px; }
-      .search-wrapper { max-width: 100%; }
-      .sort-select { width: 100%; }
-      .categories-bar { padding: 5px 5% 20px; }
-      .cat-chip { padding: 10px 18px; font-size: 0.85rem; }
-      .hero { padding: 5px 5% 15px; }
-      .hero-banner { padding: 45px 20px; border-radius: 24px; }
-      .hero h1 { font-size: 2.1rem; letter-spacing: -1px; }
-      .hero p { font-size: 0.95rem; margin-bottom: 20px; }
-      
-      .shop-container { padding: 15px 5% 80px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .product-card { border-radius: 20px; }
       .prod-content { padding: 14px; }
-      .prod-title { font-size: 1rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .prod-desc { font-size: 0.8rem; line-height: 1.3; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .prod-footer { flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 10px; }
+      .prod-title { font-size: 1rem; }
+      .prod-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
       .prod-price { font-size: 1.15rem; }
-      .prod-footer .btn { width: 100%; padding: 10px; font-size: 0.85rem; border-radius: 12px; }
-      
       .sidebar { width: 100%; max-width: 100%; padding: 20px; }
       .admin-box { padding: 25px 15px; border-radius: 24px; }
-      .admin-list-item { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .admin-list-item .btn { width: 100%; }
     }
-    @media (max-width: 400px) { .products-grid { grid-template-columns: 1fr; gap: 16px; } }
+    @media (max-width: 400px) { .products-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -179,7 +155,7 @@
 
   <div class="controls-row">
     <div class="search-wrapper">
-      <input type="text" id="search-input" class="search-input" placeholder="Rechercher un article de marque..." oninput="filterAndSortProducts()">
+      <input type="text" id="search-input" class="search-input" placeholder="Rechercher un article..." oninput="filterAndSortProducts()">
     </div>
     <select id="sort-select" class="sort-select" onchange="filterAndSortProducts()">
       <option value="default">Tri par défaut</option>
@@ -193,18 +169,14 @@
   <header class="hero">
     <div class="hero-banner">
       <h1>L'Exception Automatique.</h1>
-      <p>Découvrez notre catalogue sécurisé synchronisé en instantané sur tous vos écrans PC et Mobiles.</p>
+      <p>Découvrez notre catalogue cloud sécurisé. Commandes et paiements simplifiés via PayPal.</p>
       <button class="btn btn-primary" onclick="document.getElementById('shop-section').scrollIntoView()">Découvrir la vitrine</button>
     </div>
   </header>
 
   <main class="shop-container" id="shop-section">
-    <div class="grid-title">
-      <h2 id="grid-title-text">Les pièces disponibles</h2>
-    </div>
+    <div class="grid-title"><h2>Les pièces disponibles</h2></div>
     <div class="products-grid" id="products-container">
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
     </div>
@@ -218,88 +190,113 @@
     <div class="cart-items" id="cart-items-container"></div>
     <div class="cart-footer">
       <div style="display:flex; justify-content:space-between; font-size:1.3rem; font-weight:700; margin-bottom:20px;">
-        <span>Total global</span> <span id="cart-total-price" style="font-family:'Space Grotesk'; color:var(--accent);">0.00 €</span>
+        <span>Sous-total</span> <span id="cart-total-price" style="color:var(--accent);">0.00 €</span>
       </div>
       <button class="btn btn-primary" style="width: 100%;" onclick="openCheckoutModal()">
-        🔒 Passer à la caisse
+        📦 Passer à la caisse
       </button>
     </div>
   </div>
 
   <div class="modal-overlay" id="checkout-modal">
-    <div class="admin-box" style="max-width: 500px;">
-      <h2 style="margin-bottom: 20px;">📋 Formulaire de Livraison</h2>
-      <div class="form-group"><label>Nom Complet</label><input type="text" id="c-name" required placeholder="Jean Dupont"></div>
-      <div class="form-group"><label>Numéro de Téléphone Mobile</label><input type="tel" id="c-phone" required placeholder="06 12 34 56 78"></div>
-      <div class="form-group"><label>Adresse Complète de Livraison</label><textarea id="c-address" required placeholder="12 Rue de la Paix, 75002 Paris"></textarea></div>
-      <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="submitOrderCloud()">Confirmer l'achat et payer</button>
-      <button class="btn btn-secondary" style="width: 100%; margin-top: 10px; border:none;" onclick="closeModal('checkout-modal')">Retour au panier</button>
+    <div class="admin-box">
+      <div style="display: flex; justify-content: space-between; align-items:center; margin-bottom: 20px;">
+        <h3>📋 Coordonnées de Livraison</h3>
+        <button class="sidebar-close" onclick="closeModal('checkout-modal')">✕</button>
+      </div>
+      
+      <div class="form-group"><label>Nom Complet</label><input type="text" id="c-name" placeholder="Ex: Jean Dupont"></div>
+      <div class="form-group"><label>Téléphone Mobile</label><input type="tel" id="c-phone" placeholder="Ex: 06 12 34 56 78"></div>
+      <div class="form-group"><label>Adresse Complète de Livraison</label><textarea id="c-address" placeholder="Numéro, rue, code postal et ville..."></textarea></div>
+
+      <div class="price-summary-box">
+        <div class="price-summary-line"><span>Articles :</span> <span id="summary-subtotal">0.00 €</span></div>
+        <div class="price-summary-line"><span>Frais de livraison fixe :</span> <span>4.00 €</span></div>
+        <div class="price-summary-line" style="font-weight:700; margin-top:8px; padding-top:8px; border-top:1px dashed var(--border); color:white;">
+          <span>Total à régler :</span> <span id="summary-total">0.00 €</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width: 100%;" onclick="proceedToPaymentStage()">
+        🔒 Valider l'adresse et passer au paiement
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="payment-modal">
+    <div class="admin-box" style="max-width: 460px;">
+      <div style="display: flex; justify-content: space-between; align-items:center; margin-bottom: 20px;">
+        <h3>💳 Paiement Sécurisé</h3>
+        <button class="sidebar-close" onclick="closeModal('payment-modal')">✕</button>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; text-align: center;">
+        Mode de paiement accepté : <strong>PayPal uniquement</strong>.<br>Votre transaction est 100% cryptée.
+      </p>
+
+      <div style="text-align: center; margin-bottom: 25px;">
+        <span style="font-size: 1rem; color: var(--text-muted);">Montant total dû :</span>
+        <h2 id="payment-grand-total" style="font-size: 2.2rem; color: #fff; margin-top: 5px; font-family: 'Space Grotesk';">0.00 €</h2>
+      </div>
+
+      <div id="paypal-button-container" style="z-index: 99999;"></div>
+
+      <button class="btn btn-secondary" style="width: 100%; margin-top: 15px; border:none;" onclick="backToAddressStage()">
+        ⬅️ Modifier l'adresse de livraison
+      </button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="success-modal">
+    <div class="admin-box" style="max-width: 450px;">
+      <div class="success-card">
+        <div class="success-icon">✓</div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 12px; color: white;">Paiement Reçu !</h2>
+        <p style="color: #a1a1aa; line-height: 1.6; margin-bottom: 25px; font-size: 1rem;">
+          Un immense <strong>merci pour votre confiance</strong> ! Votre commande a été enregistrée avec succès. Notre équipe prépare déjà votre colis pour une expédition ultra-rapide à votre adresse. À très bientôt sur SHOP !
+        </p>
+        <button class="btn btn-primary" style="width: 100%;" onclick="closeModal('success-modal')">Retour à l'accueil</button>
+      </div>
     </div>
   </div>
 
   <div class="modal-overlay" id="login-modal">
     <div class="admin-box" style="max-width: 400px; text-align: center;">
-      <h2 style="margin-bottom: 25px;">🔐 Espace d'administration Secrète</h2>
-      <div class="form-group"><input type="text" id="admin-user" placeholder="Nom de compte unique"></div>
-      <div class="form-group"><input type="password" id="admin-pass" placeholder="Clé de sécurité passe"></div>
-      <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="verifyAdminLogin()">Déverrouiller le système</button>
-      <button class="btn btn-secondary" style="width: 100%; margin-top: 10px; border:none;" onclick="closeModal('login-modal')">Fermer</button>
+      <h2>🔐 Connexion Console</h2>
+      <div class="form-group" style="margin-top:15px;"><input type="text" id="admin-user" placeholder="Identifiant"></div>
+      <div class="form-group"><input type="password" id="admin-pass" placeholder="Mot de passe"></div>
+      <button class="btn btn-primary" style="width: 100%;" onclick="verifyAdminLogin()">Ouvrir l'administration</button>
     </div>
   </div>
 
   <div class="modal-overlay" id="admin-dashboard-modal">
-    <div class="admin-box">
-      <div style="display: flex; justify-content: space-between; align-items:center; margin-bottom: 25px;">
-        <h3>🛠️ Console Centrale d'Administration Cloud</h3>
+    <div class="admin-box" style="max-width: 800px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <h3>🛠️ Console Centrale Cloud</h3>
         <button class="sidebar-close" onclick="closeModal('admin-dashboard-modal')">✕</button>
       </div>
-
       <div class="admin-nav-tabs">
-        <button class="tab-btn active" id="tab-prod-btn" onclick="switchTab('products')">📦 Publier</button>
-        <button class="tab-btn" id="tab-stock-btn" onclick="switchTab('stock')">🗂️ Gérer les Stocks</button>
-        <button class="tab-btn" id="tab-orders-btn" onclick="switchTab('orders')">📋 Commandes Reçues (<span id="orders-badge">0</span>)</button>
+        <button class="tab-btn active" id="tab-prod-btn" onclick="switchTab('products')">📦 Ajouter</button>
+        <button class="tab-btn" id="tab-stock-btn" onclick="switchTab('stock')">🗂️ Stocks</button>
+        <button class="tab-btn" id="tab-orders-btn" onclick="switchTab('orders')">📋 Ventes Reçues (<span id="orders-badge">0</span>)</button>
       </div>
-
       <div id="admin-products-section">
-        <div style="background: var(--bg); padding:20px; border-radius:20px; margin-bottom:25px; border:1px solid var(--border);">
-          <h4 style="margin-bottom: 12px;">➕ Créer une nouvelle catégorie de produits</h4>
-          <div style="display: flex; gap: 10px;">
-            <input type="text" id="new-cat-name" placeholder="Ex: Accessoires, Luxe..." style="background:var(--bg-card);">
-            <button class="btn btn-secondary" style="padding:0 25px;" onclick="addCategoryLocal()">Ajouter</button>
-          </div>
-        </div>
-
-        <h4 style="margin-bottom: 15px;">📦 Téléverser un nouvel article en rayon</h4>
         <form id="product-form" onsubmit="addProductCloud(event)">
-          <div class="form-group"><label>Désignation / Nom de l'objet</label><input type="text" id="p-title" required></div>
-          <div class="grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-            <div class="form-group"><label>Tarif unitaire (€)</label><input type="number" id="p-price" step="0.01" required></div>
-            <div class="form-group"><label>Catégorie cible</label><select id="p-cat"></select></div>
-          </div>
-          <div class="form-group"><label>Adresse URL de la photo produit</label><input type="text" id="p-img" placeholder="https://images.unsplash.com/..."></div>
+          <div class="form-group"><label>Nom de l'objet</label><input type="text" id="p-title" required></div>
+          <div class="form-group"><label>Tarif unitaire (€)</label><input type="number" id="p-price" step="0.01" required></div>
+          <div class="form-group"><label>Catégorie cible</label><select id="p-cat"></select></div>
+          <div class="form-group"><label>Lien de l'image</label><input type="text" id="p-img"></div>
           <div class="form-group"><label>Description Marketing</label><textarea id="p-desc" required></textarea></div>
-          <button type="submit" id="submit-btn" class="btn btn-primary" style="width:100%;">Injecter et propulser sur le serveur Cloud</button>
+          <button type="submit" id="submit-btn" class="btn btn-primary" style="width:100%;">Injecter au catalogue cloud</button>
         </form>
       </div>
-
-      <div id="admin-stock-section" style="display:none;">
-        <h4 style="margin-bottom: 15px;">🗂️ Articles en rayon (Suppression définitive)</h4>
-        <div id="stock-list-container"></div>
-      </div>
-
-      <div id="admin-orders-section" style="display: none;">
-        <h4 style="margin-bottom: 15px;">📋 Journal Historique des Ventes</h4>
-        <div id="orders-log-container"></div>
-      </div>
+      <div id="admin-stock-section" style="display:none;"><div id="stock-list-container"></div></div>
+      <div id="admin-orders-section" style="display: none;"><div id="orders-log-container"></div></div>
     </div>
   </div>
 
   <script>
-    // ═════════════════════════════════════════════════════════════════
-    // ARCHITECTURE SERVEUR CLOUD CENTRALISÉE PAR DOUBLE RACCORDEMENT (MOCKAPI)
-    // ═════════════════════════════════════════════════════════════════
     const API_PRODUCTS_URL = "https://6a1eabd8b79eec0d6cefd6ee.mockapi.io/products";
-    // Création automatique d'une table orders sécurisée pour stocker les fiches clients
     const API_ORDERS_URL = "https://6a1eabd8b79eec0d6cefd6ee.mockapi.io/orders"; 
 
     let categories = JSON.parse(localStorage.getItem('premium_cats')) || ['Tech', 'Mode', 'Design'];
@@ -307,41 +304,30 @@
     let cloudOrders = [];
     let cart = [];
     let currentFilterCategory = "all";
+    
+    // Variables de livraison client stockées temporairement
+    let clientDeliveryInfo = null;
+    let paypalRendered = false;
 
     document.addEventListener("DOMContentLoaded", () => {
       fetchDataFromCloud();
       renderCategories();
       updateCartUI();
-
-      window.addEventListener('keydown', (e) => {
-        if(e.key === 'a' || e.key === 'A') openSecretAdmin();
-      });
+      window.addEventListener('keydown', (e) => { if(e.key === 'a' || e.key === 'A') openSecretAdmin(); });
     });
 
-    // TÉLÉCHARGEMENT INITIAL COMPLET DEPUIS LA LIQUIDITÉ DU CLOUD
     async function fetchDataFromCloud() {
       try {
         const [prodRes, orderRes] = await Promise.all([
           fetch(API_PRODUCTS_URL),
           fetch(API_ORDERS_URL).catch(() => null)
         ]);
-
-        if(prodRes && prodRes.ok) {
-          products = await prodRes.json();
-          products.reverse();
-        }
-        if(orderRes && orderRes.ok) {
-          cloudOrders = await orderRes.json();
-          cloudOrders.reverse();
-          document.getElementById('orders-badge').innerText = cloudOrders.length;
-        }
+        if(prodRes && prodRes.ok) { products = await prodRes.json(); products.reverse(); }
+        if(orderRes && orderRes.ok) { cloudOrders = await orderRes.json(); cloudOrders.reverse(); document.getElementById('orders-badge').innerText = cloudOrders.length; }
         filterAndSortProducts();
-      } catch (error) {
-        console.error("Erreur d'initialisation Cloud :", error);
-      }
+      } catch (error) { console.error("Erreur serveur cloud :", error); }
     }
 
-    // ACCÈS ADMIN SÉCURISÉ
     function openSecretAdmin() { document.getElementById('login-modal').style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
@@ -354,49 +340,28 @@
         document.getElementById('p-cat').innerHTML = categories.map(c => `<option value="${c}">${c}</option>`).join('');
         renderStockControl();
         renderOrdersList();
-      } else {
-        alert("⚠️ Clé d'authentification invalide.");
-      }
+      } else { alert("Identifiants incorrects."); }
     }
 
     function switchTab(tab) {
-      const sections = {
-        products: 'admin-products-section',
-        stock: 'admin-stock-section',
-        orders: 'admin-orders-section'
-      };
-      const buttons = {
-        products: 'tab-prod-btn',
-        stock: 'tab-stock-btn',
-        orders: 'tab-orders-btn'
-      };
-
-      Object.keys(sections).forEach(k => {
-        document.getElementById(sections[k]).style.display = k === tab ? 'block' : 'none';
-        document.getElementById(buttons[k]).classList.toggle('active', k === tab);
-      });
-
+      document.getElementById('admin-products-section').style.display = tab === 'products' ? 'block' : 'none';
+      document.getElementById('admin-stock-section').style.display = tab === 'stock' ? 'block' : 'none';
+      document.getElementById('admin-orders-section').style.display = tab === 'orders' ? 'block' : 'none';
+      document.getElementById('tab-prod-btn').classList.toggle('active', tab === 'products');
+      document.getElementById('tab-stock-btn').classList.toggle('active', tab === 'stock');
+      document.getElementById('tab-orders-btn').classList.toggle('active', tab === 'orders');
       if(tab === 'stock') renderStockControl();
       if(tab === 'orders') renderOrdersList();
     }
 
-    // TRAITEMENT DYNAMIQUE ET SÉQUENTIEL DES RECHERCHES ET TRIS D’ARTICLES
     function filterAndSortProducts() {
       const searchStr = document.getElementById('search-input').value.toLowerCase().trim();
       const sortType = document.getElementById('sort-select').value;
-
       let result = [...products];
-
-      if(currentFilterCategory !== "all") {
-        result = result.filter(p => p.cat === currentFilterCategory);
-      }
-      if(searchStr) {
-        result = result.filter(p => p.title.toLowerCase().includes(searchStr) || p.desc.toLowerCase().includes(searchStr));
-      }
-
+      if(currentFilterCategory !== "all") result = result.filter(p => p.cat === currentFilterCategory);
+      if(searchStr) result = result.filter(p => p.title.toLowerCase().includes(searchStr) || p.desc.toLowerCase().includes(searchStr));
       if(sortType === "price-asc") result.sort((a,b) => parseFloat(a.price) - parseFloat(b.price));
       if(sortType === "price-desc") result.sort((a,b) => parseFloat(b.price) - parseFloat(a.price));
-
       renderProductsGrid(result);
     }
 
@@ -417,16 +382,11 @@
 
     function renderProductsGrid(arr) {
       const container = document.getElementById('products-container');
-      if(arr.length === 0) {
-        container.innerHTML = `<div class="loading-text">Aucun article ne correspond à vos critères de recherche actuels.</div>`;
-        return;
-      }
-
+      if(arr.length === 0) { container.innerHTML = `<div class="loading-text">Aucun article trouvé.</div>`; return; }
       container.innerHTML = arr.map(p => `
         <div class="product-card">
           <div class="prod-img-wrapper">
-            ${p.img ? `<img src="${p.img}" class="prod-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23333\' stroke-width=\'1\'><rect width=\'20\' height=\'20\' x=\'2\' y=\'2\' rx=\'2\'/><path d=\'M21 16V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8\'/><circle cx=\'8.5\' cy=\'10.5\' r=\'1.5\'/></svg>'"/>` : ''}
-            <span style="font-size:2rem; position:absolute; z-index:1; opacity:0.1; color:white;">✨</span>
+            ${p.img ? `<img src="${p.img}" class="prod-img" onerror="this.style.display='none'"/>` : ''}
           </div>
           <div class="prod-content">
             <span class="prod-cat">${escapeHtml(p.cat)}</span>
@@ -441,86 +401,45 @@
       `).join('');
     }
 
-    // ACTIONS CLOUD INJECTION ET DESSTRUCTION (STOCKS ET CATEGORIES)
-    function addCategoryLocal() {
-      const input = document.getElementById('new-cat-name');
-      const name = input.value.trim();
-      if(!name || categories.includes(name)) return;
-      categories.push(name);
-      localStorage.setItem('premium_cats', JSON.stringify(categories));
-      input.value = "";
-      renderCategories();
-      document.getElementById('p-cat').innerHTML = categories.map(c => `<option value="${c}">${c}</option>`).join('');
-    }
-
     async function addProductCloud(e) {
       e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      btn.innerText = "Synchronisation Cloud en cours...";
-      btn.disabled = true;
-
       const title = document.getElementById('p-title').value.trim();
       const price = parseFloat(document.getElementById('p-price').value);
       const cat = document.getElementById('p-cat').value;
       const img = document.getElementById('p-img').value.trim();
       const desc = document.getElementById('p-desc').value.trim();
-
       try {
         const res = await fetch(API_PRODUCTS_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title, price, cat, img, desc })
         });
-        if(res.ok) {
-          document.getElementById('product-form').reset();
-          closeModal('admin-dashboard-modal');
-          await fetchDataFromCloud();
-          alert("🚀 Article injecté en rayon avec succès !");
-        }
-      } catch (err) { alert("Échec réseau."); }
-      finally { btn.innerText = "Injecter et propulser sur le serveur Cloud"; btn.disabled = false; }
+        if(res.ok) { document.getElementById('product-form').reset(); closeModal('admin-dashboard-modal'); await fetchDataFromCloud(); }
+      } catch (err) { alert("Erreur cloud."); }
     }
 
     async function deleteProductCloud(id) {
-      if(!confirm("Voulez-vous retirer cet article de la vente définitivement ?")) return;
+      if(!confirm("Supprimer ce produit définitivement du cloud ?")) return;
       try {
         const res = await fetch(`${API_PRODUCTS_URL}/${id}`, { method: 'DELETE' });
-        if(res.ok) {
-          await fetchDataFromCloud();
-          renderStockControl();
-        }
-      } catch (err) { alert("Erreur serveur."); }
+        if(res.ok) { await fetchDataFromCloud(); renderStockControl(); }
+      } catch (err) { alert("Erreur."); }
     }
 
     function renderStockControl() {
       const container = document.getElementById('stock-list-container');
-      if(products.length === 0) {
-        container.innerHTML = `<p style="color:var(--text-muted);">Aucun produit en stock.</p>`;
-        return;
-      }
       container.innerHTML = products.map(p => `
         <div class="admin-list-item">
-          <div>
-            <strong style="color:white;">${escapeHtml(p.title)}</strong><br/>
-            <span style="font-size:0.85rem; color:var(--text-muted);">${escapeHtml(p.cat)} — ${parseFloat(p.price).toFixed(2)} €</span>
-          </div>
-          <button class="btn btn-danger" style="padding:8px 15px; font-size:0.85rem;" onclick="deleteProductCloud('${p.id}')">Supprimer du cloud</button>
+          <div><strong style="color:white;">${escapeHtml(p.title)}</strong><br/><span style="font-size:0.85rem; color:var(--text-muted);">${parseFloat(p.price).toFixed(2)} €</span></div>
+          <button class="btn btn-danger" style="padding:8px 15px; font-size:0.85rem;" onclick="deleteProductCloud('${p.id}')">Supprimer</button>
         </div>
       `).join('');
     }
 
-    // LE PANIER CLIENT DYNAMIQUE
+    /* GESTION LE PANIER DYNAMIQUE */
     function toggleCart(open) { document.getElementById('cart-sidebar').classList.toggle('open', open); }
-    
-    function addToCart(id) {
-      const p = products.find(prod => prod.id == id);
-      if(p) { cart.push(p); updateCartUI(); toggleCart(true); }
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
+    function addToCart(id) { const p = products.find(prod => prod.id == id); if(p) { cart.push(p); updateCartUI(); toggleCart(true); } }
+    function removeFromCart(index) { cart.splice(index, 1); paypalRendered = false; updateCartUI(); }
 
     function updateCartUI() {
       document.getElementById('cart-count').innerText = cart.length;
@@ -539,85 +458,151 @@
           <button class="cart-item-del" onclick="removeFromCart(${index})">Enlever</button>
         </div>
       `).join('');
-      const total = cart.reduce((s, i) => s + i.price, 0);
-      document.getElementById('cart-total-price').innerText = `${total.toFixed(2)} €`;
+      const subtotal = cart.reduce((s, i) => s + i.price, 0);
+      document.getElementById('cart-total-price').innerText = `${subtotal.toFixed(2)} €`;
     }
 
-    // INTÉGRATION FORMULAIRE ET INJECTION DES COMMANDES SÉCURISÉES DANS LE CLOUD
+    /* ═════════════════════════════════════════════════════════════════
+       NOUVEAU TUNNEL DE COMMANDE ET ROUTAGE VERS LE PAIEMENT PAYPAL (X1000)
+       ═════════════════════════════════════════════════════════════════ */
+    
+    // Étape 1 : Ouvrir le formulaire de livraison et calculer les prix
     function openCheckoutModal() {
       if(cart.length === 0) return;
       toggleCart(false);
+
+      const subtotal = cart.reduce((s, i) => s + i.price, 0);
+      const totalWithDelivery = subtotal + 4.00; // Ajout des 4€ de frais de livraison fixes
+
+      document.getElementById('summary-subtotal').innerText = `${subtotal.toFixed(2)} €`;
+      document.getElementById('summary-total').innerText = `${totalWithDelivery.toFixed(2)} €`;
+      
       document.getElementById('checkout-modal').style.display = 'flex';
     }
 
-    async function submitOrderCloud() {
+    // Étape 2 : Vérification du formulaire et passage à l'écran PayPal
+    function proceedToPaymentStage() {
       const name = document.getElementById('c-name').value.trim();
       const phone = document.getElementById('c-phone').value.trim();
       const address = document.getElementById('c-address').value.trim();
 
       if(!name || !phone || !address) {
-        alert("Veuillez remplir l'ensemble des coordonnées pour la livraison.");
+        alert("⚠️ Veuillez remplir toutes les cases pour que nous puissions livrer votre colis.");
         return;
       }
 
-      const total = cart.reduce((s, i) => s + i.price, 0);
-      const orderPayload = {
-        client: name,
-        tel: phone,
-        adresse: address,
-        total: `${total.toFixed(2)} €`,
-        items: cart.map(i => i.title).join(', '),
-        date: new Date().toLocaleString('fr-FR')
-      };
+      // Enregistrement des données de livraison en mémoire
+      clientDeliveryInfo = { name, phone, address };
 
-      try {
-        const res = await fetch(API_ORDERS_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload)
-        });
+      const subtotal = cart.reduce((s, i) => s + i.price, 0);
+      const finalGrandTotal = subtotal + 4.00;
 
-        if(res.ok) {
-          alert(`💳 Commande Envoyée !\nMerci ${name}, votre ficher client a été envoyé à l'administrateur.`);
-          cart = [];
-          updateCartUI();
-          closeModal('checkout-modal');
-          await fetchDataFromCloud(); // Actualise l'historique admin en tâche de fond
-        } else {
-          alert("Erreur d'envoi du bon de commande.");
+      // Fermeture du formulaire et ouverture de l'écran PayPal
+      closeModal('checkout-modal');
+      document.getElementById('payment-grand-total').innerText = `${finalGrandTotal.toFixed(2)} €`;
+      document.getElementById('payment-modal').style.display = 'flex';
+
+      // Lancement du bouton intelligent PayPal (s'il n'est pas déjà affiché)
+      initPayPalButton(finalGrandTotal);
+    }
+
+    function backToAddressStage() {
+      closeModal('payment-modal');
+      document.getElementById('checkout-modal').style.display = 'flex';
+    }
+
+    // Étape 3 : Initialisation et Configuration des boutons PayPal intelligents
+    function initPayPalButton(grandTotalValue) {
+      if (paypalRendered) { return; } // Évite de dupliquer le bouton en boucle
+
+      document.getElementById('paypal-button-container').innerHTML = ""; // Reset de sécurité
+
+      paypal.Buttons({
+        // Déclenchement de la facture PayPal
+        createOrder: function(data, actions) {
+          // Recalcul du montant total exact juste avant le clic (sécurité)
+          const liveSubtotal = cart.reduce((s, i) => s + i.price, 0);
+          const liveTotal = liveSubtotal + 4.00;
+
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                currency_code: 'EUR',
+                value: liveTotal.toFixed(2) // Valeur globale envoyée à PayPal (Articles + 4€)
+              },
+              description: "Commande SHOP - Articles: " + cart.map(i => i.title).join(', ')
+            }]
+          });
+        },
+
+        // Déclenchement quand le paiement par le client est validé et encaissé
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(async function(details) {
+            
+            const totalFacture = cart.reduce((s, i) => s + i.price, 0) + 4.00;
+            
+            // Préparation du payload de commande pour ton espace Admin Cloud
+            const orderPayload = {
+              client: clientDeliveryInfo.name,
+              tel: clientDeliveryInfo.phone,
+              adresse: clientDeliveryInfo.address,
+              total: `${totalFacture.toFixed(2)} € (dont 4€ livraison)`,
+              items: cart.map(i => i.title).join(', '),
+              date: new Date().toLocaleString('fr-FR'),
+              paypalOrderId: details.id
+            };
+
+            // Injection automatique de la fiche vente dans ton MockAPI pour l'historique
+            try {
+              await fetch(API_ORDERS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderPayload)
+              });
+            } catch(e) { console.error("Erreur log cloud order", e); }
+
+            // Fermeture du module de paiement, vidage du panier et ouverture du BEAU MESSAGE DE SUCCÈS
+            closeModal('payment-modal');
+            cart = [];
+            paypalRendered = false;
+            updateCartUI();
+            
+            // Affichage de la superbe carte de remerciement personnalisée
+            document.getElementById('success-modal').style.display = 'flex';
+            
+            // Rafraîchissement silencieux des données admin
+            fetchDataFromCloud();
+          });
+        },
+
+        // Si le client quitte ou annule
+        onError: function(err) {
+          console.error("Erreur de paiement PayPal :", err);
+          alert("⚠️ La transaction a été interrompue ou refusée par PayPal. Veuillez réessayer.");
         }
-      } catch (err) {
-        alert("Le serveur de paiement n'a pas répondu.");
-      }
+      }).render('#paypal-button-container');
+
+      paypalRendered = true;
     }
 
     function renderOrdersList() {
       const container = document.getElementById('orders-log-container');
-      if(cloudOrders.length === 0) {
-        container.innerHTML = `<p style="color:var(--text-muted); text-align:center;">Aucune commande enregistrée dans la base cloud pour le moment.</p>`;
-        return;
-      }
+      if(cloudOrders.length === 0) { container.innerHTML = `<p style="color:var(--text-muted); text-align:center;">Aucune commande.</p>`; return; }
       container.innerHTML = cloudOrders.map(o => `
         <div class="order-row">
-          <div class="order-header">
-            <span>📦 Commande Cloud #${o.id}</span>
-            <span style="color:var(--success);">${o.total}</span>
-          </div>
-          <div class="order-details">
-            <p><strong>Client :</strong> ${escapeHtml(o.client)}</p>
-            <p><strong>Contact Tel :</strong> ${escapeHtml(o.tel || 'Non renseigné')}</p>
-            <p><strong>Adresse de Livraison :</strong> ${escapeHtml(o.adresse || 'Non renseignée')}</p>
-            <p style="margin-top:5px; padding-top:5px; border-top:1px dashed rgba(255,255,255,0.05);"><strong>Articles commandés :</strong> <span style="color:white;">${escapeHtml(o.items)}</span></p>
-            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:5px;">Enregistré le : ${o.date || 'Récemment'}</p>
+          <div class="order-header"><span>📦 Commande Cloud</span><span style="color:var(--success);">${o.total}</span></div>
+          <div style="font-size:0.9rem; color:#a1a1aa; line-height:1.5;">
+            <p><strong>Destinataire :</strong> ${escapeHtml(o.client)}</p>
+            <p><strong>Téléphone :</strong> ${escapeHtml(o.tel)}</p>
+            <p><strong>Lieu de Livraison :</strong> ${escapeHtml(o.adresse)}</p>
+            <p style="margin-top:5px; border-top:1px dashed rgba(255,255,255,0.05); padding-top:5px;"><strong>Contenu :</strong> <span style="color:white;">${escapeHtml(o.items)}</span></p>
+            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:5px;">Date : ${o.date || 'Récemment'}</p>
           </div>
         </div>
       `).join('');
     }
 
-    function escapeHtml(str) {
-      if(!str) return '';
-      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    }
+    function escapeHtml(str) { if(!str) return ''; return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   </script>
 </body>
 </html>
